@@ -1,3 +1,6 @@
+/* global app:true */
+/* exported app */
+
 'use strict';
 
 /**
@@ -8,24 +11,28 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('angBoulderTrainerApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+    'ngTouch',
+    'timer'
+      ])
+  .config(function ($routeProvider, $locationProvider) {
+    
+    $locationProvider.html5Mode(true);
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/create', {
+        templateUrl: 'views/planBuilder.html',
+        controller: 'PlanBldrCtrl'
       })
       .otherwise({
         redirectTo: '/'
